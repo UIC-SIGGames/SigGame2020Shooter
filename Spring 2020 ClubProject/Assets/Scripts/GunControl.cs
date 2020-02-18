@@ -1,48 +1,27 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
-
 
 public class GunControl : MonoBehaviour
 {
+    [SerializeField] private float coolDownTime = 0.2f;
 
-    public bool isFiring;
-    bool canFire = true; 
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject bullet;
 
-    public BulletControl bullet; 
-    public float bulletSpeed; 
-    public float timeBetweenShots; 
-    private float shotCounter; 
-    public Transform firePoint; 
+    private bool coolingDown = false;
 
-    IEnumerator coolDown()
+    internal void CommandFire()
     {
-        yield return new WaitForSeconds(timeBetweenShots);
-        canFire = true;
-        yield return null;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        if(!coolingDown)    
+            StartCoroutine(Shoot());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Shoot()
     {
-        if( isFiring){
-            canFire = false;
-            
-                shotCounter = timeBetweenShots; 
-                BulletControl newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation) as BulletControl;
-                newBullet.speed = bulletSpeed;
-                StartCoroutine(coolDown());
-        }
-            else {
-                shotCounter = 0; 
-            }
-        }
+        coolingDown = true;
+        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        yield return new WaitForSeconds(coolDownTime);
+        coolingDown = false;
     }
+}
 
