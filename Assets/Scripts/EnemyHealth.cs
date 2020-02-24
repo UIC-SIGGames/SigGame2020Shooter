@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float coolDownTime = 4.0f;
     public float health; 
     public float maxHealth; 
-
+    [SerializeField] private AudioSource metalsound;
     public GameObject healthBar; 
     public Slider mainSlider;
 
@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        metalsound = GetComponent<AudioSource>();
         health = maxHealth;
         mainSlider.value = CalculateHealth(); 
     }
@@ -44,6 +45,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet_1" ){
             health = health - 100; 
+            metalsound.Play(); 
             CalculateHealth(); 
         }
     }
