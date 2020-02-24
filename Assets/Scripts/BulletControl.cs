@@ -5,6 +5,11 @@ public class BulletControl : MonoBehaviour
 {
     [SerializeField] private float speed = 50f,
                                    despawnTime = 2f;
+                                   AudioSource sound;
+                                   [SerializeField]
+                                   private float min;
+                                   [SerializeField]
+                                   private float max;
 
     IEnumerator despawn()
     {
@@ -14,6 +19,8 @@ public class BulletControl : MonoBehaviour
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
+        sound.pitch = Random.Range(min, max);
         StartCoroutine(despawn());
     }
 
