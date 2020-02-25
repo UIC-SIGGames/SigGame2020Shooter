@@ -119,6 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5061322414051066457}
   - component: {fileID: 5061322414051066458}
+  - component: {fileID: 8117322080631906208}
   m_Layer: 0
   m_Name: Basic Gun
   m_TagString: Untagged
@@ -154,6 +155,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e8df29497e84174a7b432e927b9ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownTime: 0.2
+  coolDownTime: 0.5
   firePoint: {fileID: 5061322412891232794}
   bullet: {fileID: 2276094806416667319, guid: 5d7e5bba5fc5147059ca0e9f30c5f1ca, type: 3}
+--- !u!114 &8117322080631906208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061322414051066459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f81d92d602cb946b8615c22dbe1b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 61ea8d390de978540b01a8cb162a330e, type: 2}

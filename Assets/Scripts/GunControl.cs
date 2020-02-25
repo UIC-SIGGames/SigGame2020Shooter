@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GunControl : MonoBehaviour
@@ -10,10 +11,15 @@ public class GunControl : MonoBehaviour
 
     private bool coolingDown = false;
 
+    public event Action OnFire = delegate { };
+
     internal void CommandFire()
     {
-        if(!coolingDown)    
+        if (!coolingDown)
+        {
+            OnFire();
             StartCoroutine(Shoot());
+        }
     }
 
     IEnumerator Shoot()

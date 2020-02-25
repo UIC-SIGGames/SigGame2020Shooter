@@ -3,29 +3,25 @@ using UnityEngine;
 
 public class BulletControl : MonoBehaviour
 {
-    [SerializeField] private float speed = 50f,
-                                   despawnTime = 2f;
-                                   AudioSource sound;
-                                   [SerializeField]
-                                   private float min;
-                                   [SerializeField]
-                                   private float max;
+    [SerializeField]
+    private float speed       = 20f,
+                  damageAmt   = 10f,
+                  despawnTime = 2f;
+    private void Start()
+    {
+        GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        StartCoroutine(Despawn());
+    }
 
-    IEnumerator despawn()
+    private IEnumerator Despawn()
     {
         yield return new WaitForSeconds(despawnTime);
         Destroy(gameObject);
     }
 
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        sound = GetComponent<AudioSource>();
-        sound.pitch = Random.Range(min, max);
-        StartCoroutine(despawn());
-    }
-
-    void Update()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime );
+        collision.gameObject.GetComponent<iHealth>()?.TakeDamage(damageAmt);
+        Destroy(gameObject);
     }
 }

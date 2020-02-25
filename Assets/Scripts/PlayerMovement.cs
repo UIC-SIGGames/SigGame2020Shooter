@@ -6,15 +6,13 @@ public class PlayerMovement : MonoBehaviour
 
     private new Rigidbody rigidbody;
     private new Camera camera;
-    Vector3 anything; 
-    public AudioSource sound;
-    bool isPlaying; 
 
+    private float sqrMaxVelocity;
     private void Start()
     {
-                sound = GetComponent<AudioSource>();
         camera = Camera.main;
         rigidbody = GetComponent<Rigidbody>();
+        sqrMaxVelocity = moveSpeed * moveSpeed;
     }
 
     private void Update()
@@ -24,8 +22,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    { 
-        rigidbody.velocity = moveVelocity; 
+    {
+        rigidbody.velocity = moveVelocity;
+
+        // To prevent faster diagonal movement
+        if (rigidbody.velocity.sqrMagnitude > sqrMaxVelocity)
+            rigidbody.velocity = rigidbody.velocity.normalized * moveSpeed;
     }
 
     private Vector3 direction;
@@ -42,16 +44,6 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        if(moveInput != Vector3.zero && !isPlaying){
-            isPlaying = true; 
-            sound.Play(); 
-            
-
-        }
-        else if(moveInput == Vector3.zero) {
-            isPlaying = false;
-            sound.Stop();
-        }
         moveVelocity = moveInput * moveSpeed;
     }
 }

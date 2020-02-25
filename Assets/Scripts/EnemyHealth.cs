@@ -1,68 +1,53 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, iHealth
 {
-    [SerializeField] private float coolDownTime = 4.0f;
-    public float health; 
-    public float maxHealth; 
-    [SerializeField] private AudioSource metalsound;
-    public GameObject healthBar; 
-    public Slider mainSlider;
+    [SerializeField] private float maxHealth = 5f,
+                                   despawnTime = 4.0f;
 
-    public GameObject fill; 
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private GameObject healthCanvas;
 
-    // Start is called before the first frame update
-    void Start()
+    private float currentHealth;
+
+    public event Action OnTakeDamage = delegate { };
+
+    private void Start()
     {
-        metalsound = GetComponent<AudioSource>();
-        health = maxHealth;
-        mainSlider.value = CalculateHealth(); 
+        currentHealth = maxHealth;
+        healthSlider.value = PercentLeft();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float amount)
     {
-        mainSlider.value = CalculateHealth(); 
-        if(health < maxHealth){
-            healthBar.SetActive(true); 
-        }
-         if(health <= 0){
-            fill.SetActive(false); 
-            StartCoroutine(die());
-             
-         }
+        currentHealth -= amount;
+        UpdateHealthBar();
 
-         if(health >maxHealth){
-             health = maxHealth; 
-         }
+        OnTakeDamage();
     }
 
-
- void OnCollisionEnter(Collision collision)
+    public float PercentLeft()
     {
-        if(collision.gameObject.tag == "Bullet_1" ){
-            health = health - 100; 
-            metalsound.Play(); 
-            CalculateHealth(); 
+        return currentHealth / maxHealth;
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthSlider.value = PercentLeft();
+
+        if (currentHealth <= 0)
+        {
+            healthCanvas.SetActive(false);
+            StartCoroutine(Despawn());
         }
     }
 
-
-float  CalculateHealth(){
-        return health / maxHealth; 
-    }
-
-
-IEnumerator die()
+    private IEnumerator Despawn()
     {
-       
-        yield return new WaitForSeconds(coolDownTime);
-     Destroy(this.gameObject); 
+        yield return new WaitForSeconds(despawnTime);
+        Destroy(gameObject);
     }
-
-
 }
-
