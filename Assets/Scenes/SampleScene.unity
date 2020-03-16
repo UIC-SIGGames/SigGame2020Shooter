@@ -808,11 +808,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: stopsign (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3079694331526474849, guid: 50da477c7bc6fdf45baa4588728c9615,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4606910564490924902, guid: 50da477c7bc6fdf45baa4588728c9615,
         type: 3}
       propertyPath: m_LocalPosition.x
