@@ -8,8 +8,7 @@ public class EnemyHealth : MonoBehaviour, iHealth
     [SerializeField] private float maxHealth = 5f,
                                    despawnTime = 4.0f;
 
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private GameObject healthCanvas;
+    private HealthBar healthBar;
 
     private float currentHealth;
 
@@ -18,13 +17,17 @@ public class EnemyHealth : MonoBehaviour, iHealth
     private void Start()
     {
         currentHealth = maxHealth;
-        healthSlider.value = PercentLeft();
+        healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.SetFill(PercentLeft());
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        UpdateHealthBar();
+        healthBar.ChangeFill(PercentLeft());
+
+        if (currentHealth <= 0)
+            StartCoroutine(Despawn());
 
         OnTakeDamage();
     }
@@ -32,17 +35,6 @@ public class EnemyHealth : MonoBehaviour, iHealth
     public float PercentLeft()
     {
         return currentHealth / maxHealth;
-    }
-
-    private void UpdateHealthBar()
-    {
-        healthSlider.value = PercentLeft();
-
-        if (currentHealth <= 0)
-        {
-            healthCanvas.SetActive(false);
-            StartCoroutine(Despawn());
-        }
     }
 
     private IEnumerator Despawn()

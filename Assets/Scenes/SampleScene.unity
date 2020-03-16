@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 275386144}
   - component: {fileID: 275386147}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 873473c4cf4ae7e4bab8c095b5909ce9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -400,8 +400,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -2.3404263e-24, y: 2.3937171e-21, z: -3.0590932e+31,
-    w: NaN}
+  m_BoundingSphereOverride: {x: 8.11e-43, y: 0, z: 0, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -809,10 +808,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: stopsign (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3079694331526474849, guid: 50da477c7bc6fdf45baa4588728c9615,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4606910564490924902, guid: 50da477c7bc6fdf45baa4588728c9615,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.27
+      value: 3.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 4606910564490924902, guid: 50da477c7bc6fdf45baa4588728c9615,
         type: 3}
@@ -981,7 +985,7 @@ PrefabInstance:
     - target: {fileID: 4606910564490924902, guid: 50da477c7bc6fdf45baa4588728c9615,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.8
+      value: -3.07
       objectReference: {fileID: 0}
     - target: {fileID: 4606910564490924902, guid: 50da477c7bc6fdf45baa4588728c9615,
         type: 3}
