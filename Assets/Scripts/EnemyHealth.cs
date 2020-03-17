@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour, iHealth
     {
         currentHealth -= amount;
         healthBar.ChangeFill(PercentLeft());
-        ScoreManager.Instance.AddPoints(ScoreType.Hit); // probably this too
+        ScoreManager.Instance?.AddPoints(ScoreType.Hit); // probably this too
 
         if (currentHealth <= 0)
             StartCoroutine(Despawn());
@@ -40,7 +40,7 @@ public class EnemyHealth : MonoBehaviour, iHealth
 
     private IEnumerator Despawn() // put all of this into a higher level enemy script
     {
-        ScoreManager.Instance.AddPoints(ScoreType.Destructible);
+        ScoreManager.Instance?.AddPoints(ScoreType.Destructible);
         yield return new WaitForSeconds(despawnTime);
         Destroy(gameObject);
     }

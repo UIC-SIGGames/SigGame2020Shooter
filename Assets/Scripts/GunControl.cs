@@ -24,8 +24,8 @@ public class GunControl : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        ScoreManager.Instance.AddPoints(ScoreType.Shot);
-        BatteryManager.Instance.RemoveEnergy(5f);
+        ScoreManager.Instance?.AddPoints(ScoreType.Shot);
+        BatteryManager.Instance?.RemoveEnergy(5f);
 
         coolingDown = true;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
