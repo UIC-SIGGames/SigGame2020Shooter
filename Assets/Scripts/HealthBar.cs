@@ -35,6 +35,7 @@ public class HealthBar : MonoBehaviour
             newFillAmount = 1;
 
         fillAmount = newFillAmount;
+        reachedFill = true;
         UpdateVisualProperties();
     }
 
