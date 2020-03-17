@@ -23,9 +23,10 @@ public class BatteryManager : MonoBehaviour
     private void Update()
     {
         if (energyLeft <= 0)
-            Debug.Log("GAME OVER");
+            ; // die
 
-        DepleteEnergy();
+        if (!GameManager.gameOver)
+            DepleteEnergy();
     }
 
     public void AddEnergy(float amount)
