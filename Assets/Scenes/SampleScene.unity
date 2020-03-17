@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 705507994}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -361,21 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeea640398e3faa48a6d1f0203aae51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreMap:
-  - type: 0
-    pointValue: 1
-  - type: 1
-    pointValue: 5
-  - type: 2
-    pointValue: 15
-  - type: 3
-    pointValue: 20
-  - type: 4
-    pointValue: 25
-  - type: 5
-    pointValue: 45
-  - type: 6
-    pointValue: 90
 --- !u!4 &558570324
 Transform:
   m_ObjectHideFlags: 0
@@ -482,6 +467,49 @@ Transform:
   m_Father: {fileID: 165197573}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &824839364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 824839365}
+  - component: {fileID: 824839366}
+  m_Layer: 0
+  m_Name: '[ Game Manager ]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &824839365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824839364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1802328817}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824839366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824839364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2054b5dad2a032b4b8d18e63b67e15fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &894220769
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +877,7 @@ Transform:
   m_Children:
   - {fileID: 558570324}
   - {fileID: 894220771}
+  - {fileID: 824839365}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1118,6 +1147,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6428695951125292060, guid: 1848d909a4cc32744b31c1e1056e0643,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428695951125292060, guid: 1848d909a4cc32744b31c1e1056e0643,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428695951125292060, guid: 1848d909a4cc32744b31c1e1056e0643,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428695951125292060, guid: 1848d909a4cc32744b31c1e1056e0643,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6428695952331532529, guid: 1848d909a4cc32744b31c1e1056e0643,
         type: 3}
       propertyPath: m_Name
