@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunControl : MonoBehaviour, iShoot
 {
     [SerializeField] private float coolDownTime = 0.2f;
+    [SerializeField] private float energyConsumption = 1f;
 
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bullet;
@@ -25,7 +26,7 @@ public class GunControl : MonoBehaviour, iShoot
     IEnumerator Shoot()
     {
         ScoreManager.Instance?.AddPoints(ScoreType.Shot);
-        BatteryManager.Instance?.RemoveEnergy(5f);
+        BatteryManager.Instance?.RemoveEnergy(energyConsumption);
 
         coolingDown = true;
         Instantiate(bullet, firePoint.position, firePoint.rotation);

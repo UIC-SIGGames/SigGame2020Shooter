@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ public class Enemy_Basic : MonoBehaviour
     {
         if (state == EnemyStates.Stunned)
             StartCoroutine(GetStunned());
-        else if (state == EnemyStates.Dead)
+        else if (state == EnemyStates.Dead && !dead)
             StartCoroutine(Die());
     }
 
@@ -56,8 +57,14 @@ public class Enemy_Basic : MonoBehaviour
     private IEnumerator Die()
     {
         dead = true;
+        SpawnBattery();
         ScoreManager.Instance?.AddPoints(ScoreType.Destructible);
         yield return new WaitForSeconds(GameManager.DespawnTime);
         Destroy(gameObject);
+    }
+
+    private void SpawnBattery()
+    {
+        Instantiate(Resources.Load<GameObject>("Battery"), transform.position + Vector3.up * 2, Quaternion.identity);
     }
 }

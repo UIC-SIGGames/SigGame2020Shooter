@@ -25,8 +25,7 @@ public class Health_Enemy : MonoBehaviour, iHealth
         currentHealth -= amount;
         healthBar.ChangeFill(PercentLeft());
 
-        ScoreManager.Instance?.AddPoints(ScoreType.Hit); // probably this too
-        BatteryManager.Instance?.AddEnergy(10f);
+        ScoreManager.Instance?.AddPoints(ScoreType.Hit);
 
         if (currentHealth <= 0)
             OnChangeState(EnemyStates.Dead);

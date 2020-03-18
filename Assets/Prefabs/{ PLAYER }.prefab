@@ -48,9 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da31ef1db73111a4780fc7d2cf517478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  acceleration: 1
-  deceleration: 1
+  accelForce: 15
 --- !u!114 &2974802597429183858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +71,7 @@ Rigidbody:
   m_GameObject: {fileID: 2974802597429183869}
   serializedVersion: 2
   m_Mass: 5
-  m_Drag: 2
+  m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0

@@ -24,9 +24,6 @@ public class BatteryManager : MonoBehaviour
     {
         if (energyLeft <= 0)
             ; // die
-
-        if (!GameManager.GameOver)
-            DepleteEnergy();
     }
 
     public void AddEnergy(float amount)
@@ -40,7 +37,7 @@ public class BatteryManager : MonoBehaviour
         OnEnergyChange(energyLeft / startingEnergy);
     }
 
-    private void DepleteEnergy()
+    private void DepleteEnergy() // use this if we want an artificial time limit
     {
         energyLeft -= depletionRate * Time.deltaTime;
         OnEnergyChange(energyLeft / startingEnergy);
