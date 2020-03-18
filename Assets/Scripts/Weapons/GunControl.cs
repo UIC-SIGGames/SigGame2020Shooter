@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GunControl : MonoBehaviour
+public class GunControl : MonoBehaviour, iShoot
 {
     [SerializeField] private float coolDownTime = 0.2f;
 
