@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
     private Color currentColor;
     private Material material;
 
-    private void Start()
+    private void Awake()
     {
         material = GetComponent<SpriteRenderer>().material;
     }

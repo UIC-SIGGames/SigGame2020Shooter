@@ -4,11 +4,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static event Action OnEnd = delegate { };
+    public static float DespawnTime { get; private set; }
+    public static bool GameOver { get; private set; }
 
-    public static bool gameOver = false;
+    [SerializeField] private float despawnTime = 4.0f;
 
     private void Start()
     {
+        DespawnTime = despawnTime;
+        GameOver = false;
         BatteryManager.OnEnergyChange += EndGame;
     }
 
@@ -16,9 +20,9 @@ public class GameManager : MonoBehaviour
     {
         if (healthPercent >= 0)
             return;
-        if(!gameOver)
+        if(!GameOver)
         {
-            gameOver = true;
+            GameOver = true;
             Debug.Log("Game over");
             OnEnd();
         }

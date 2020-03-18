@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(iHealth))]
-public class sfxStopSignHit : MonoBehaviour
+public class sfxTakeDamage : MonoBehaviour
 {
     [SerializeField]
     private AudioEvent audioEvent;

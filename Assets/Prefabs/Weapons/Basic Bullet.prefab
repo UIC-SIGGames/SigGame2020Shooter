@@ -109,7 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   damageAmt: 10
-  despawnTime: 2
 --- !u!54 &-7019386651192297878
 Rigidbody:
   m_ObjectHideFlags: 0

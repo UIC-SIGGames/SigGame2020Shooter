@@ -7,15 +7,14 @@ public class TrackedScoreMetrics
         Score = 0;
         NumShots = 0;
         NumHits = 0;
-        elapsedTime = TimeSpan.Zero;
+        TimeElapsed = TimeSpan.Zero;
         startTime = DateTime.Now;
-        GameManager.OnEnd += CeaseTracking;
     }
 
     public int Score { get; private set; }
     public int NumShots { get; private set; }
     public int NumHits { get; private set; }
-    public TimeSpan elapsedTime { get; private set; }
+    public TimeSpan TimeElapsed { get; private set; }
 
     private DateTime startTime; // could also track last hit, last kill for multipliers
 
@@ -36,9 +35,9 @@ public class TrackedScoreMetrics
         }
     }
 
-    private void CeaseTracking()
+    internal void CeaseTracking()
     {
-        elapsedTime = DateTime.Now - startTime;
+        TimeElapsed = DateTime.Now - startTime;
     }
 }
 

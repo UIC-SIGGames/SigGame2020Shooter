@@ -4,9 +4,8 @@ using UnityEngine;
 public class BulletControl : MonoBehaviour
 {
     [SerializeField]
-    private float speed       = 20f,
-                  damageAmt   = 10f,
-                  despawnTime = 2f;
+    private float speed = 20f,
+                  damageAmt = 10f;
     private void Start()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
@@ -15,7 +14,7 @@ public class BulletControl : MonoBehaviour
 
     private IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(despawnTime);
+        yield return new WaitForSeconds(GameManager.DespawnTime);
         Destroy(gameObject);
     }
 

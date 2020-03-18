@@ -25,7 +25,7 @@ public class BatteryManager : MonoBehaviour
         if (energyLeft <= 0)
             ; // die
 
-        if (!GameManager.gameOver)
+        if (!GameManager.GameOver)
             DepleteEnergy();
     }
 

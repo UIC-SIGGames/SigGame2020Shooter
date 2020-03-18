@@ -22,7 +22,8 @@ public class ScoreManager : MonoBehaviour
 
     private void WrapUp()
     {
-        Debug.Log("Use " + metrics.elapsedTime.TotalSeconds + " seconds as a statistic and save it!");
+        metrics.CeaseTracking();
+        Debug.Log("Use " + metrics.TimeElapsed.TotalSeconds + " seconds as a statistic and save it!");
         Debug.Log("Shot " + metrics.NumShots + " and hit " + metrics.NumHits + " resulting in accuracy: " + 100 * ((float)metrics.NumHits / metrics.NumShots) + "%");
         Debug.Log("Use and save score statistics");
         // probably send the whole tracked metrics object to a UI screen for parsing
