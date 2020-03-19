@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
     private float accelForce = 5f,
                   energyLossRate = 0.045f;
 
-    private new Rigidbody rigidbody;
-    private new Camera camera;
+    private Rigidbody rb;
+    private Camera mainCam;
 
     private void Start()
     {
-        camera = Camera.main;
-        rigidbody = GetComponent<Rigidbody>();
+        mainCam = Camera.main;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -29,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private float angle;
     private void HandleRotation()
     {
-        direction = Input.mousePosition - camera.WorldToScreenPoint(transform.position);
-        angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90f;
+        direction = Input.mousePosition - mainCam.WorldToScreenPoint(transform.position);
+        angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.down);
     }
 
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.magnitude > 0)
         {
             BatteryManager.Instance?.RemoveEnergy(energyLossRate);
-            rigidbody.AddForce(moveInput * accelForce, ForceMode.Acceleration);
+            rb.AddForce(moveInput * accelForce, ForceMode.Acceleration);
         }
     }
 }

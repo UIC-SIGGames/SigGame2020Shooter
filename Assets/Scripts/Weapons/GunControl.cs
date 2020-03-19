@@ -6,6 +6,7 @@ public class GunControl : MonoBehaviour, iShoot
 {
     [SerializeField] private float coolDownTime = 0.2f;
     [SerializeField] private float energyConsumption = 1f;
+    [SerializeField] private float degreeInaccuracy = 3f;
 
     [SerializeField] private Transform firePoint = null;
     [SerializeField] private GameObject bullet = null;
@@ -28,10 +29,14 @@ public class GunControl : MonoBehaviour, iShoot
         ScoreManager.Instance?.AddPoints(ScoreType.Shot);
         BatteryManager.Instance?.RemoveEnergy(energyConsumption);
 
+        Vector3 rotation = transform.eulerAngles;
+        rotation.y += UnityEngine.Random.Range(-degreeInaccuracy, degreeInaccuracy);
+
         coolingDown = true;
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        Instantiate(bullet, firePoint.position, Quaternion.Euler(rotation));
+
         yield return new WaitForSeconds(coolDownTime);
+
         coolingDown = false;
     }
 }
-

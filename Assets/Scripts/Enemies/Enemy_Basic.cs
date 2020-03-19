@@ -57,14 +57,22 @@ public class Enemy_Basic : MonoBehaviour
     private IEnumerator Die()
     {
         dead = true;
-        SpawnBattery();
+        SpawnBattery(UnityEngine.Random.Range(0,4));
         ScoreManager.Instance?.AddPoints(ScoreType.Destructible);
         yield return new WaitForSeconds(GameManager.DespawnTime);
         Destroy(gameObject);
     }
 
-    private void SpawnBattery()
+    private void SpawnBattery(int numBatteries)
     {
-        Instantiate(Resources.Load<GameObject>("Battery"), transform.position + Vector3.up * 2, Quaternion.identity);
+        bool playerLowHealth = false;
+        if (BatteryManager.Instance != null)
+            playerLowHealth = BatteryManager.Instance.LowEnergy();
+
+        if (playerLowHealth && numBatteries < 2)
+            numBatteries = 2;
+
+        while(numBatteries > 0)
+            Instantiate(Resources.Load<GameObject>("Battery"), transform.position + Vector3.up * numBatteries--, Quaternion.identity);
     }
 }

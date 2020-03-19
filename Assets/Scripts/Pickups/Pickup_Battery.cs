@@ -3,9 +3,7 @@
 [RequireComponent(typeof(Collider))]
 public class Pickup_Battery : MonoBehaviour
 {
-    private float magnetSpeed = 3f;
-
-    private float magnetIncreaseSpeed = 0f;
+    private float magnetSpeed = 1f;
     private bool magnetized = false;
 
     private Transform magnetTarget;
@@ -22,9 +20,8 @@ public class Pickup_Battery : MonoBehaviour
     {
         if (magnetized)
         {
-            // use bezier curve instead?
-            rb.MovePosition(Vector3.MoveTowards(transform.position, magnetTarget.position, (magnetIncreaseSpeed + magnetSpeed) * Time.deltaTime));
-            magnetIncreaseSpeed += 8 * Time.deltaTime;
+            rb.MovePosition(Vector3.MoveTowards(transform.position, magnetTarget.position, magnetSpeed * Time.deltaTime));
+            magnetSpeed *= 1.05f;
         }
     }
 

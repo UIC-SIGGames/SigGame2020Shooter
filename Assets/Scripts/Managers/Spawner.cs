@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 
     private Transform player = null;
     private float nextSpawnTimer = 0f;
-    private float nextSpawnID = 0;
+    private int nextSpawnID = 0;
 
     private void Start()
     {

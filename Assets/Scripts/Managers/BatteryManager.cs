@@ -37,6 +37,11 @@ public class BatteryManager : MonoBehaviour
         OnEnergyChange(energyLeft / startingEnergy);
     }
 
+    public bool LowEnergy()
+    {
+        return energyLeft < startingEnergy * 0.3f;
+    }
+
     private void DepleteEnergy() // use this if we want an artificial time limit
     {
         energyLeft -= depletionRate * Time.deltaTime;
