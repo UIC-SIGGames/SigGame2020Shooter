@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-// currently throws a null exception after its target dies, doesn't affect anything
 public class Hover : MonoBehaviour
 {
     private Transform target;
@@ -18,7 +15,7 @@ public class Hover : MonoBehaviour
     {
         if (target == null)
             Destroy(gameObject); // recycle instead
-
-        transform.position = target.position + offset;
+        else
+            transform.position = target.position + offset;
     }
 }

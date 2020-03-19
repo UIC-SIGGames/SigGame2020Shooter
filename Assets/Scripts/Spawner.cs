@@ -2,9 +2,9 @@
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] enemyTypes;
+    [SerializeField] GameObject[] enemyTypes = null;
 
-    private Transform player;
+    private Transform player = null;
     private float nextSpawnTimer = 0f;
     private float nextSpawnID = 0;
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioEvent : ScriptableObject
 {
     [SerializeField]
-    private AudioClip[] audioClips;
+    private AudioClip[] audioClips = null;
     [SerializeField]
     private Vector2 volumeRange = new Vector2(0.5f, 1.0f),
                     pitchRange = new Vector2(0.75f, 1.25f);

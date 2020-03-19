@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("Score Settings")]
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText = null;
 
     [Header("Battery Settings")]
-    [SerializeField] private Image batteryFill;
+    [SerializeField] private Image batteryFill = null;
     [SerializeField] private Color fullColor = Color.green,
                                    emptyColor = Color.red;
 

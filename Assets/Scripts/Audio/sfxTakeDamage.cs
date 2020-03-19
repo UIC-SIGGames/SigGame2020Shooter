@@ -4,9 +4,9 @@
 public class sfxTakeDamage : MonoBehaviour
 {
     [SerializeField]
-    private AudioEvent audioEvent;
+    private AudioEvent audioEvent = null;
 
-    private AudioSource audioSource;
+    private AudioSource audioSource = null;
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
