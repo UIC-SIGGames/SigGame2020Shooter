@@ -2,7 +2,7 @@
 
 public class PlayerModelTweening : MonoBehaviour
 {
-    [SerializeField] private Transform model; // can make this an array to do multiple pieces
+    [SerializeField] private Transform model = null; // can make this an array to do multiple pieces
 
     [Header("Customizables")]
     [SerializeField] private float tiltScale = 2f;

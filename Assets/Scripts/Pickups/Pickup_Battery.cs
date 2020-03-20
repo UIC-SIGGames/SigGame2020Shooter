@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Pickup_Battery : MonoBehaviour
+public class Pickup_Battery : MonoBehaviour, iPickup
 {
     private float magnetSpeed = 1f;
     private bool magnetized = false;
@@ -9,11 +10,13 @@ public class Pickup_Battery : MonoBehaviour
     private Transform magnetTarget;
     private Rigidbody rb;
 
+    public event Action OnPickup = delegate { };
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Vector3 force = new Vector3(Random.Range(-1f, 1f), Random.Range(1f, 2f), Random.Range(-1f, 1f));
-        rb.AddForce(force * Random.Range(1, 5), ForceMode.Impulse);
+        Vector3 force = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(1f, 2f), UnityEngine.Random.Range(-1f, 1f));
+        rb.AddForce(force * UnityEngine.Random.Range(1, 5), ForceMode.Impulse);
     }
 
     private void Update()
@@ -21,7 +24,7 @@ public class Pickup_Battery : MonoBehaviour
         if (magnetized)
         {
             rb.MovePosition(Vector3.MoveTowards(transform.position, magnetTarget.position, magnetSpeed * Time.deltaTime));
-            magnetSpeed *= 1.05f;
+            magnetSpeed *= 1.05f; // nice effect, discriminates against low framerates as pickups don't have as many frames to accelerate.
         }
     }
 
@@ -30,7 +33,12 @@ public class Pickup_Battery : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             BatteryManager.Instance?.AddEnergy(GameManager.BatPickupBonus);
-            Destroy(gameObject);
+            Instantiate(Resources.Load<GameObject>("Pickup Particles"), transform.position, Quaternion.identity); // recycle
+
+            transform.position = new Vector3(0, -100, 0); // bad bad bad ALL OF THIS IS BAD
+            OnPickup();
+            magnetized = false; // use a global sound manager PlayOneShot instead of doing these 4 lines??
+            Destroy(gameObject, 0.2f); // most DEFINITELY recycle these instead
         }
     }
 
