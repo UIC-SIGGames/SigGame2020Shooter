@@ -20,7 +20,8 @@ public class BulletControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<iHealth>()?.TakeDamage(damageAmt);
+        Vector3 normal = collision.contacts[0].normal;
+        collision.gameObject.GetComponent<iHealth>()?.TakeDamage(damageAmt, normal);
         Destroy(gameObject);
     }
 }
