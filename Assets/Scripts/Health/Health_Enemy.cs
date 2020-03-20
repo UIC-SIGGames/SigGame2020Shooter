@@ -20,7 +20,7 @@ public class Health_Enemy : MonoBehaviour, iHealth
         healthBar.SetFill(PercentLeft());
     }
 
-    public void TakeDamage(float amount, Vector3 normal)
+    public void TakeDamage(float amount, Collision collision)
     {
         currentHealth -= amount;
         healthBar.ChangeFill(PercentLeft());
@@ -31,7 +31,10 @@ public class Health_Enemy : MonoBehaviour, iHealth
             OnChangeState(EnemyStates.Dead);
 
         OnTakeDamage();
-        Instantiate(Resources.Load<GameObject>("Shot Impact"), transform.localPosition + normal, Quaternion.identity, transform);
+        Instantiate(Resources.Load<GameObject>("Shot Impact"), 
+            collision.contacts[0].point, 
+            Quaternion.FromToRotation(Vector3.forward, collision.contacts[0].normal), 
+            transform);
         OnChangeState(EnemyStates.Stunned);
     }
 

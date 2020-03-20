@@ -11,7 +11,7 @@ public class Health_Prop : MonoBehaviour, iHealth
         return 100f;
     }
 
-    public void TakeDamage(float amount, Vector3 normal)
+    public void TakeDamage(float amount, Collision collision)
     {
         ScoreManager.Instance?.AddPoints(ScoreType.Destructible);
         OnTakeDamage();
