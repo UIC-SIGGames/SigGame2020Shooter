@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(iShoot))]
+[RequireComponent(typeof(iWeapon))]
 public class sfxShoot : MonoBehaviour
 {
     [SerializeField]
@@ -10,7 +10,7 @@ public class sfxShoot : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        GetComponent<iShoot>().OnFire += ShootSound;
+        GetComponent<iWeapon>().OnFire += ShootSound;
     }
 
     private void ShootSound()

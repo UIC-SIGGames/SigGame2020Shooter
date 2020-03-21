@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GunControl : MonoBehaviour, iShoot
+public class GunControl : MonoBehaviour, iWeapon
 {
     [SerializeField] private float coolDownTime = 0.2f;
     [SerializeField] private float energyConsumption = 1f;
@@ -15,7 +15,7 @@ public class GunControl : MonoBehaviour, iShoot
 
     public event Action OnFire = delegate { };
 
-    internal void CommandFire()
+    public void CommandFire()
     {
         if (!coolingDown)
         {

@@ -2,7 +2,7 @@
 using Cinemachine;
 
 [RequireComponent(typeof(CinemachineImpulseSource))]
-[RequireComponent(typeof(iShoot))]
+[RequireComponent(typeof(iWeapon))]
 public class ShootImpulseHelper : MonoBehaviour
 {
     private CinemachineImpulseSource impulse;
@@ -12,7 +12,7 @@ public class ShootImpulseHelper : MonoBehaviour
         // in order to share guns between enemies and player
 
         impulse = GetComponent<CinemachineImpulseSource>();
-        GetComponent<iShoot>().OnFire += SendImpulse;
+        GetComponent<iWeapon>().OnFire += SendImpulse;
     }
 
     private void SendImpulse()

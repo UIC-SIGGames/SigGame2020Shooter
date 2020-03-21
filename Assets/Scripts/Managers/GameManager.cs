@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float despawnTime = 4.0f;
     [SerializeField] private float batteryPickupEnergyBonus = 10f;
+    [SerializeField] private float blowUpShakeAmount = 10f;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
             return;
         if(!GameOver)
         {
+            GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse(Vector3.one * blowUpShakeAmount);
             GameOver = true;
             Debug.Log("Game over");
             OnEnd();

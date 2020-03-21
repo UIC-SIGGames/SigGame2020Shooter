@@ -20,12 +20,6 @@ public class BatteryManager : MonoBehaviour
         energyLeft = startingEnergy;
     }
 
-    private void Update()
-    {
-        if (energyLeft <= 0)
-            ; // die
-    }
-
     public void AddEnergy(float amount)
     {
         energyLeft += amount;

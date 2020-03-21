@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2974802597429183862}
   - component: {fileID: 1170721009124831261}
   - component: {fileID: 840740330700782570}
+  - component: {fileID: 4385518809943287189}
   m_Layer: 0
   m_Name: '{ PLAYER }'
   m_TagString: Player
@@ -63,7 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a492e350bd43340b486ff115060d398b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 2974802599279357375}
+  damageAmount: 30
+  recoveryTime: 0.8
+  screenShakeAmount: 1.2
+  shuntForce: 5
+  explosionRadius: 20
+  explosiveForce: 5000
+  maxTorqueMultiplier: 50
 --- !u!54 &2974802597429183862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,6 +116,54 @@ MonoBehaviour:
   tiltScale: 1.75
   bobDistance: 0.2
   bobSpeed: 2
+--- !u!114 &4385518809943287189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2974802597429183869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd438dd108a0f284aa931a2da434f1d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_UseImpactDirection: 0
+  m_ScaleImpactWithMass: 0
+  m_ScaleImpactWithSpeed: 0
 --- !u!1 &7515097726277144794
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,15 +303,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8031592522323652581}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2974802599279357375 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5061322414051066458, guid: a7631a977652aa04db664ac51e466ef5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8031592522323652581}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e8df29497e84174a7b432e927b9ffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

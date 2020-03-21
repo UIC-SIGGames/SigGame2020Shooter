@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletControl : MonoBehaviour
 {
@@ -9,18 +8,11 @@ public class BulletControl : MonoBehaviour
     private void Start()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
-        StartCoroutine(Despawn());
-    }
-
-    private IEnumerator Despawn()
-    {
-        yield return new WaitForSeconds(GameManager.DespawnTime);
-        Destroy(gameObject);
+        Destroy(gameObject, GameManager.DespawnTime);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 normal = collision.contacts[0].normal;
         collision.gameObject.GetComponent<iHealth>()?.TakeDamage(damageAmt, collision);
         Destroy(gameObject);
     }

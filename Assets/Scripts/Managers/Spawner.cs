@@ -11,6 +11,12 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameManager.OnEnd += HandleEnd;
+    }
+
+    private void HandleEnd()
+    {
+        Destroy(gameObject);
     }
 
     private void Update()

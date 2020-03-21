@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public class Health_Enemy : MonoBehaviour, iHealth
@@ -20,22 +18,24 @@ public class Health_Enemy : MonoBehaviour, iHealth
         healthBar.SetFill(PercentLeft());
     }
 
-    public void TakeDamage(float amount, Collision collision)
+    public void TakeDamage(float amount, Collision collision = null)
     {
         currentHealth -= amount;
         healthBar.ChangeFill(PercentLeft());
-
         ScoreManager.Instance?.AddPoints(ScoreType.Hit);
+
+        if(collision != null)
+            Instantiate(Resources.Load<GameObject>("Shot Impact"), 
+                collision.contacts[0].point, 
+                Quaternion.FromToRotation(Vector3.forward, collision.contacts[0].normal), 
+                transform);
+
+        OnTakeDamage();
 
         if (currentHealth <= 0)
             OnChangeState(EnemyStates.Dead);
-
-        OnTakeDamage();
-        Instantiate(Resources.Load<GameObject>("Shot Impact"), 
-            collision.contacts[0].point, 
-            Quaternion.FromToRotation(Vector3.forward, collision.contacts[0].normal), 
-            transform);
-        OnChangeState(EnemyStates.Stunned);
+        else
+            OnChangeState(EnemyStates.Stunned);
     }
 
     public float PercentLeft()
@@ -48,16 +48,6 @@ public class Health_Enemy : MonoBehaviour, iHealth
         var newHealthBarObject = Instantiate(Resources.Load<GameObject>("Health Bar"));
         newHealthBarObject.name = gameObject.name + "'s health bar";
         newHealthBarObject.GetComponent<Hover>().SetTarget(gameObject.transform, Vector3.up * 2);
-        healthBar = (newHealthBarObject.GetComponent<HealthBar>());
+        healthBar = newHealthBarObject.GetComponent<HealthBar>();
     }
-}
-
-public enum EnemyStates
-{
-    Patrolling,
-    Seeking,
-    MovingTowardsTarget,
-    Attacking,
-    Stunned,
-    Dead
 }

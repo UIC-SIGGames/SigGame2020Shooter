@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 public class Health_Prop : MonoBehaviour, iHealth
@@ -11,16 +10,10 @@ public class Health_Prop : MonoBehaviour, iHealth
         return 100f;
     }
 
-    public void TakeDamage(float amount, Collision collision)
+    public void TakeDamage(float amount, Collision collision = null)
     {
         ScoreManager.Instance?.AddPoints(ScoreType.Destructible);
         OnTakeDamage();
-        StartCoroutine(Despawn());
-    }
-
-    private IEnumerator Despawn()
-    {
-        yield return new WaitForSeconds(GameManager.DespawnTime);
-        Destroy(gameObject);
+        Destroy(gameObject, GameManager.DespawnTime);
     }
 }

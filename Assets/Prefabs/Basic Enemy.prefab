@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4960511083688470709}
   - component: {fileID: -6733780125493604151}
   - component: {fileID: 6554769028485296471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Basic Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 6081241266675580747}
   - component: {fileID: 6081241266675580725}
   - component: {fileID: 6081241266675580724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

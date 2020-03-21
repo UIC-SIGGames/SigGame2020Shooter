@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Basic : MonoBehaviour
+public class Enemy_Basic : MonoBehaviour, iEnemy
 {
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float stunTime = .35f;
@@ -13,6 +13,8 @@ public class Enemy_Basic : MonoBehaviour
 
     private Rigidbody rb;
     private Transform target;
+
+    private bool shouldFollow { get { return target != null && !stunned && !dead; } }
 
     private void Start()
     {
@@ -24,13 +26,13 @@ public class Enemy_Basic : MonoBehaviour
 
     private void Update()
     {
-        if (ShouldFollow())
+        if (shouldFollow)
             FollowTarget();
     }
 
-    private bool ShouldFollow()
+    public bool IsDead()
     {
-        return target != null && !stunned && !dead;
+        return dead;
     }
 
     private void ProcessState(EnemyStates state)
@@ -58,7 +60,7 @@ public class Enemy_Basic : MonoBehaviour
     {
         dead = true;
         SpawnBattery(UnityEngine.Random.Range(0,4));
-        ScoreManager.Instance?.AddPoints(ScoreType.Destructible);
+        ScoreManager.Instance?.AddPoints(ScoreType.BasicEnemy);
         yield return new WaitForSeconds(GameManager.DespawnTime);
         Destroy(gameObject);
     }
