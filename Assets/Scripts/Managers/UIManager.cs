@@ -18,6 +18,12 @@ public class UIManager : MonoBehaviour
         BatteryManager.OnEnergyChange += UpdateBatteryFill;
     }
 
+    private void OnDestroy()
+    {
+        ScoreManager.OnUpdatedScore -= UpdateScoreText;
+        BatteryManager.OnEnergyChange -= UpdateBatteryFill;
+    }
+
     private void UpdateScoreText(int score)
     {
         scoreText.text = score.ToString();
@@ -25,7 +31,10 @@ public class UIManager : MonoBehaviour
 
     private void UpdateBatteryFill(float fillPercent)
     {
-        batteryFill.fillAmount = fillPercent;
-        batteryFill.color = Color.Lerp(emptyColor, fullColor, fillPercent - 0.15f);
+        if (batteryFill != null)
+        {
+            batteryFill.fillAmount = fillPercent;
+            batteryFill.color = Color.Lerp(emptyColor, fullColor, fillPercent - 0.15f);
+        }
     }
 }

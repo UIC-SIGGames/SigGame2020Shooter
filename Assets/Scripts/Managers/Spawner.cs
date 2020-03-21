@@ -14,6 +14,11 @@ public class Spawner : MonoBehaviour
         GameManager.OnEnd += HandleEnd;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnEnd -= HandleEnd;
+    }
+
     private void HandleEnd()
     {
         Destroy(gameObject);

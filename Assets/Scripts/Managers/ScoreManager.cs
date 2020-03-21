@@ -14,6 +14,11 @@ public class ScoreManager : MonoBehaviour
         GameManager.OnEnd += WrapUp;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnEnd -= WrapUp;
+    }
+
     public void AddPoints(ScoreType scoreType)
     {
         metrics.UpdateStats(scoreType);

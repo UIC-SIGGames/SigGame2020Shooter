@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
         GameManager.OnEnd += Die;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnEnd -= Die;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButton(0))
@@ -84,7 +89,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (!collision.gameObject.GetComponent<iEnemy>().IsDead() && takingHits)
+        var enemy = collision.gameObject.GetComponent<iEnemy>();
+
+        if (enemy != null && !enemy.IsDead() && takingHits)
         {
             StartCoroutine(TakeHit(collision.contacts[0].normal));
         }

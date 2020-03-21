@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
         BatteryManager.OnEnergyChange += EndGame;
     }
 
+    private void OnDestroy()
+    {
+        BatteryManager.OnEnergyChange -= EndGame;
+    }
+
+    private void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
     private void EndGame(float healthPercent)
     {
         if (healthPercent >= 0)
@@ -30,6 +40,7 @@ public class GameManager : MonoBehaviour
             GameOver = true;
             Debug.Log("Game over");
             OnEnd();
+            Invoke("Restart", 5);
         }
     }
 }
