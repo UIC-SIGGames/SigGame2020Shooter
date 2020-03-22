@@ -67,7 +67,7 @@ MonoBehaviour:
   damageAmount: 30
   recoveryTime: 0.8
   screenShakeAmount: 1.2
-  shuntForce: 5
+  shuntForce: 10
   explosionRadius: 20
   explosiveForce: 5000
   maxTorqueMultiplier: 50
@@ -94,7 +94,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2974802597429183869}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2a24fab3ab7954ad0ba0363e8d4cecfc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

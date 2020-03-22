@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 
     private void BlowUp()
     {
-        // instantiate explosion effect
+        Instantiate(Resources.Load<GameObject>("Explosion"), transform.position, Quaternion.identity); // pls replace this effect
 
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
@@ -87,7 +87,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    // Using both to prevent unintended invulnerability
+    // invulnerability was partially caused by bouncy material
+    // but probably could've happened other ways too
+    private void OnCollisionEnter(Collision collision) { HandleCollision(collision); }
+    private void OnCollisionStay(Collision collision) { HandleCollision(collision); }
+
+    private void HandleCollision(Collision collision)
     {
         var enemy = collision.gameObject.GetComponent<iEnemy>();
 

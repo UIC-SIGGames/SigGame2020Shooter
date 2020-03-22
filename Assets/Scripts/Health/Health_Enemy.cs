@@ -22,7 +22,8 @@ public class Health_Enemy : MonoBehaviour, iHealth
     {
         currentHealth -= amount;
         healthBar.ChangeFill(PercentLeft());
-        ScoreManager.Instance?.AddPoints(ScoreType.Hit);
+
+        ScoreManager.Instance?.AddPoints((collision != null) ? ScoreType.Hit : ScoreType.HitMartyrdom);
 
         if(collision != null)
             Instantiate(Resources.Load<GameObject>("Shot Impact"), 

@@ -47,6 +47,7 @@ public class TrackedScoreMetrics
 public enum ScoreType // type = index (being used for point value as well right now)
 {
     Shot = 1,
+    HitMartyrdom = 3,
     Hit = 5,
     Destructible = 10,
     BuildingExplosion = 20,
