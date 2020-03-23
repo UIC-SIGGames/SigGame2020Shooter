@@ -3,8 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float accelForce = 5f,
-                  energyLossRate = 0.045f;
+    private float accelForce = 5f;
 
     private Rigidbody rb;
     private Camera mainCam;
@@ -41,9 +40,6 @@ public class PlayerMovement : MonoBehaviour
         moveInput = Vector3.ClampMagnitude(moveInput, 1); // Prevents fast diagonal acceleration
 
         if (moveInput.magnitude > 0)
-        {
-            BatteryManager.Instance?.RemoveEnergy(energyLossRate);
             rb.AddForce(moveInput * accelForce, ForceMode.Acceleration);
-        }
     }
 }

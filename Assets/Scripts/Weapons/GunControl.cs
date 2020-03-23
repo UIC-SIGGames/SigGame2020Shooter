@@ -15,6 +15,8 @@ public class GunControl : MonoBehaviour, iWeapon
 
     public event Action OnFire = delegate { };
 
+    public float GetConsumption() { return energyConsumption; }
+
     public void CommandFire()
     {
         if (!coolingDown)
@@ -27,7 +29,6 @@ public class GunControl : MonoBehaviour, iWeapon
     IEnumerator Shoot()
     {
         ScoreManager.Instance?.AddPoints(ScoreType.Shot);
-        BatteryManager.Instance?.RemoveEnergy(energyConsumption);
 
         Vector3 rotation = transform.eulerAngles;
         rotation.y += UnityEngine.Random.Range(-degreeInaccuracy, degreeInaccuracy);

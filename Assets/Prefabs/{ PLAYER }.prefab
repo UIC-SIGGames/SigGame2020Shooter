@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1170721009124831261}
   - component: {fileID: 840740330700782570}
   - component: {fileID: 4385518809943287189}
+  - component: {fileID: 4840672078692703573}
   m_Layer: 0
   m_Name: '{ PLAYER }'
   m_TagString: Player
@@ -51,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelForce: 15
-  energyLossRate: 0.045
 --- !u!114 &2974802597429183858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,10 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a492e350bd43340b486ff115060d398b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 30
-  recoveryTime: 0.8
-  screenShakeAmount: 1.2
-  shuntForce: 10
   explosionRadius: 20
   explosiveForce: 5000
   maxTorqueMultiplier: 50
@@ -164,6 +160,22 @@ MonoBehaviour:
   m_UseImpactDirection: 0
   m_ScaleImpactWithMass: 0
   m_ScaleImpactWithSpeed: 0
+--- !u!114 &4840672078692703573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2974802597429183869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2536e9a5a62a234c8c87d4134074654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 30
+  recoveryTime: 0.8
+  screenShakeAmount: 1.2
+  shuntForce: 10
 --- !u!1 &7515097726277144794
 GameObject:
   m_ObjectHideFlags: 0

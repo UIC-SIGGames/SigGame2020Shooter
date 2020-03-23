@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BatteryManager : MonoBehaviour
 {
     [SerializeField]
-    private float startingEnergy = 100,
-                  depletionRate  = 5f;
+    private float startingEnergy = 100;
 
     private float energyLeft;
 
@@ -20,25 +17,24 @@ public class BatteryManager : MonoBehaviour
         energyLeft = startingEnergy;
     }
 
-    public void AddEnergy(float amount)
+    private void ChangeEnergy(float amount)
     {
         energyLeft += amount;
+        OnEnergyChange(energyLeft / startingEnergy);
+    }
+
+    public void AddEnergy(float amount)
+    {
+        ChangeEnergy(amount);
     }
 
     public void RemoveEnergy(float amount)
     {
-        energyLeft -= amount;
-        OnEnergyChange(energyLeft / startingEnergy);
+        ChangeEnergy(-amount);
     }
 
     public bool LowEnergy()
     {
         return energyLeft < startingEnergy * 0.3f;
-    }
-
-    private void DepleteEnergy() // use this if we want an artificial time limit
-    {
-        energyLeft -= depletionRate * Time.deltaTime;
-        OnEnergyChange(energyLeft / startingEnergy);
     }
 }
