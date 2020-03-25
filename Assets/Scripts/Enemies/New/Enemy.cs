@@ -2,66 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : aEnemy
 {
-    [Header("Basic Properties")]
-    public LayerMask attackLayer;
-    public float MoveSpeed = 10f,
-                 TurnSpeed = 2f;
-
+    #region Customizables
     [Header("Seek Behavior")]
     public float TimeBtwnDecisions = 8f;
     public float EyeSight = 10f,
                  WallCheckDistance = 4.5f;
 
     [Header("Pursuit Behavior")]
-    public float ChargeRange = 4f;
-    public float LostRange = 100f;
+    public float ChargeRange = 8f;
+    public float LostRange = 40f;
 
     [Header("Charge Behavior")]
     public float ObserveTime = .25f;
-    public float ChargeTime = 3f,
-                 RecoverTime = .25f;
+    public float ChargeTime = 1.25f,
+                 RecoverTime = .25f,
+                 PredictionScale = 2f;
+    #endregion
 
-    public Transform Target { get; private set; }
-    public Rigidbody Rb { get; private set; }
-
-    private StateMachine stateMachine;
-    private void Start()
-    {
-        Rb = GetComponent<Rigidbody>();
-        nextPosition = transform.position;
-
-        InitializeStates();
-    }
-
-    public void SetTarget(Transform target)
-    {
-        Target = target;
-    }
-
-    private Vector3 nextPosition;
-    private Quaternion nextRotation;
-    public void SetMoveProperties(Vector3 posOffset, Vector3 rotationOffset, float moveSpeedMultiplier = 1f)
-    {
-        nextPosition = transform.position + posOffset * MoveSpeed * Time.fixedDeltaTime * moveSpeedMultiplier;
-        nextRotation = Quaternion.Lerp(
-            transform.rotation, 
-            Quaternion.LookRotation(rotationOffset), 
-            Time.fixedDeltaTime * TurnSpeed);
-    }
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void Move()
-    {
-        Rb.MovePosition(nextPosition);
-        transform.rotation = nextRotation;
-    }
-
-    private void InitializeStates()
+    #region State Machine Stuff
+    protected override void InitializeStates()
     {
         var states = new Dictionary<Type, EnemyState>()
         {
@@ -74,4 +35,5 @@ public class Enemy : MonoBehaviour
         stateMachine = gameObject.AddComponent<StateMachine>();
         stateMachine.SetStates(states);
     }
+    #endregion
 }

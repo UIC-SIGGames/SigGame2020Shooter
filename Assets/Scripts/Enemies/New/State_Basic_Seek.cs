@@ -52,7 +52,7 @@ public class State_Basic_Seek : EnemyState
         while (Physics.Raycast(transform.position, transform.forward + transform.right, enemy.WallCheckDistance))
         {
             seekDirection = NewDirection();
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right, transform.up), Time.deltaTime * enemy.TurnSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right, transform.up), Time.fixedDeltaTime * enemy.TurnSpeed);
            
             if (++iterationCount > 20)
                 break;
@@ -62,7 +62,7 @@ public class State_Basic_Seek : EnemyState
         while (Physics.Raycast(transform.position, transform.forward - transform.right, enemy.WallCheckDistance))
         {
             seekDirection = NewDirection();
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right, transform.up), Time.deltaTime * enemy.TurnSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right, transform.up), Time.fixedDeltaTime * enemy.TurnSpeed);
 
             if (++iterationCount > 20)
                 break;

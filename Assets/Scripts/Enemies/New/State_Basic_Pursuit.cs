@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class State_Basic_Pursuit : EnemyState
 {
+    private float distanceToTarget;
+
     public override void Interrupt()
     {
         throw new NotImplementedException();
@@ -14,12 +16,19 @@ public class State_Basic_Pursuit : EnemyState
 
         enemy.SetMoveProperties(nextPos, nextPos);
 
-        float distance = Vector3.Distance(transform.position, enemy.Target.position);
-        if (distance <= enemy.ChargeRange)
+        distanceToTarget = Vector3.Distance(transform.position, enemy.Target.position);
+        if (distanceToTarget <= enemy.ChargeRange)
             return typeof(State_Basic_Charge);
-        else if (distance >= enemy.LostRange) // add a timer
+        else if (LostTarget())
             return typeof(State_Basic_Seek);
 
         return null;
+    }
+
+    private bool LostTarget() 
+    {
+        // add a "boredom" timer
+        // add raycast to check if obstructions lie between enemy and target
+        return distanceToTarget >= enemy.LostRange;
     }
 }

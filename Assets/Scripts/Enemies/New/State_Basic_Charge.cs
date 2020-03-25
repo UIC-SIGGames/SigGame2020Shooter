@@ -17,7 +17,7 @@ public class State_Basic_Charge : EnemyState
         yield return new WaitForSeconds(enemy.ObserveTime);
         Vector3 endPos = enemy.Target.position;
 
-        Vector3 targetPos = endPos + (endPos - beginPos);
+        Vector3 targetPos = endPos + (endPos - beginPos) * enemy.PredictionScale;
         targetDirection = targetPos - transform.position;
         targetDirection = Vector3.ClampMagnitude(targetDirection, 1);
 
@@ -34,7 +34,6 @@ public class State_Basic_Charge : EnemyState
 
     public override Type Tick()
     {
-        Debug.Log("Charging");
         switch (state)
         {
             case ChargeState.Start:
