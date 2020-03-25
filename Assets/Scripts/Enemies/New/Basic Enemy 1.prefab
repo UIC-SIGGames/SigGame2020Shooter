@@ -61,7 +61,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &6782763089756923314
 MonoBehaviour:
@@ -78,6 +78,13 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 512
+  MoveSpeed: 10
+  TurnSpeed: 2
+  TimeBtwnDecisions: 8
+  EyeSight: 10
+  WallCheckDistance: 4.5
+  ChargeRange: 4
+  LostRange: 100
 --- !u!1 &6081241266675580746
 GameObject:
   m_ObjectHideFlags: 0

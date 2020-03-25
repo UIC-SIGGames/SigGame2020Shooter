@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Basic Properties")]
+    public LayerMask attackLayer;
+    public float MoveSpeed = 10f,
+                 TurnSpeed = 2f;
+    [Header("Seek Behavior")]
+    public float TimeBtwnDecisions = 8f,
+                 EyeSight = 10f,
+                 WallCheckDistance = 4.5f;
+    [Header("Pursuit Behavior")]
+    public float ChargeRange = 4f;
+    public float LostRange = 100f;
+
     public Transform Target { get; private set; }
     public Rigidbody Rb { get; private set; }
-    public float MoveSpeed { get; private set; }
-
-    public float Eyesight { get; private set; }
-    public float TurnSpeed { get; private set; }
-
-    public LayerMask attackLayer;
 
     private StateMachine stateMachine;
-
     private void Start()
     {
         Rb = GetComponent<Rigidbody>();
-        Eyesight = 10f;
-        MoveSpeed = 10f;
-        TurnSpeed = 2f;
+        nextPosition = transform.position;
 
         InitializeStates();
     }
@@ -30,17 +33,25 @@ public class Enemy : MonoBehaviour
         Target = target;
     }
 
-    public void Move(Vector3 posOffset, Vector3 rotationOffset, float moveSpeedMultiplier = 1f)
+    private Vector3 nextPosition;
+    private Quaternion nextRotation;
+    public void SetMoveProperties(Vector3 posOffset, Vector3 rotationOffset, float moveSpeedMultiplier = 1f)
     {
-        pOff = posOffset;
-        rotOff = rotationOffset;
+        nextPosition = transform.position + posOffset * MoveSpeed * Time.fixedDeltaTime * moveSpeedMultiplier;
+        nextRotation = Quaternion.Lerp(
+            transform.rotation, 
+            Quaternion.LookRotation(rotationOffset), 
+            Time.fixedDeltaTime * TurnSpeed);
     }
-    private Vector3 pOff, rotOff;
     private void FixedUpdate()
     {
-        Rb.MovePosition(transform.position + pOff * 1);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rotOff), Time.deltaTime * TurnSpeed);
+        Move();
+    }
 
+    private void Move()
+    {
+        Rb.MovePosition(nextPosition);
+        transform.rotation = nextRotation;
     }
 
     private void InitializeStates()

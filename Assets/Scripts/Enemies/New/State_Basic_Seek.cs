@@ -7,7 +7,7 @@ public class State_Basic_Seek : EnemyState
 
     public override Type Tick()
     {
-        Transform newTarget = ScanForTargets();
+        Transform newTarget = CheckForTarget();
 
         if (newTarget != null)
         {
@@ -17,49 +17,10 @@ public class State_Basic_Seek : EnemyState
         }
 
         ChangeDirectionTimer();
-        CheckWalls();
+        CheckEnvironment();
         Move();
 
         return null;
-    }
-
-    private float timeBetweenChanges = 8f;
-    private float timer = 0;
-    private void ChangeDirectionTimer()
-    {
-        if(timer <= 0)
-        {
-            seekDirection = NewDirection();
-            timer = timeBetweenChanges;
-        }
-
-        timer -= Time.deltaTime;
-    }
-
-    private float wallCheckDistance = 4.5f;
-    private void CheckWalls()
-    {
-        Debug.DrawRay(transform.position, (transform.forward + transform.right) * wallCheckDistance, Color.green);
-        Debug.DrawRay(transform.position, (transform.forward - transform.right) * wallCheckDistance, Color.green);
-        int iterationCount = 0; // to prevent any unforeseen hard locks
-
-        while (Physics.Raycast(transform.position, transform.forward + transform.right, wallCheckDistance))
-        {
-            seekDirection = NewDirection();
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right, transform.up), Time.deltaTime * enemy.TurnSpeed);
-            if (++iterationCount > 20)
-                break;
-        }
-
-        iterationCount = 0;
-        while (Physics.Raycast(transform.position, transform.forward - transform.right, wallCheckDistance))
-        {
-            seekDirection = NewDirection();
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right, transform.up), Time.deltaTime * enemy.TurnSpeed);
-
-            if (++iterationCount > 20)
-                break;
-        }
     }
 
     private void Move()
@@ -67,7 +28,45 @@ public class State_Basic_Seek : EnemyState
         if (!seekDirection.HasValue)
             seekDirection = NewDirection();
 
-        enemy.Move(seekDirection.Value * enemy.MoveSpeed * Time.fixedDeltaTime, seekDirection.Value);
+        enemy.SetMoveProperties(seekDirection.Value, seekDirection.Value);
+    }
+
+    private float timer = 0;
+    private void ChangeDirectionTimer()
+    {
+        if(timer <= 0)
+        {
+            seekDirection = NewDirection();
+            timer = enemy.TimeBtwnDecisions;
+        }
+
+        timer -= Time.deltaTime;
+    }
+
+    private void CheckEnvironment()
+    {
+        Debug.DrawRay(transform.position, (transform.forward + transform.right) * enemy.WallCheckDistance, Color.green);
+        Debug.DrawRay(transform.position, (transform.forward - transform.right) * enemy.WallCheckDistance, Color.green);
+        
+        int iterationCount = 0; // to prevent any unforeseen hard locks
+        while (Physics.Raycast(transform.position, transform.forward + transform.right, enemy.WallCheckDistance))
+        {
+            seekDirection = NewDirection();
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right, transform.up), Time.deltaTime * enemy.TurnSpeed);
+           
+            if (++iterationCount > 20)
+                break;
+        }
+
+        iterationCount = 0;
+        while (Physics.Raycast(transform.position, transform.forward - transform.right, enemy.WallCheckDistance))
+        {
+            seekDirection = NewDirection();
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right, transform.up), Time.deltaTime * enemy.TurnSpeed);
+
+            if (++iterationCount > 20)
+                break;
+        }
     }
 
     private Vector3 NewDirection()
@@ -90,7 +89,7 @@ public class State_Basic_Seek : EnemyState
     private const int ANGLE_STEP = 5;
     private Quaternion startAngle = Quaternion.AngleAxis(ANGLE_START, Vector3.up);
     private Quaternion stepAngle = Quaternion.AngleAxis(ANGLE_STEP, Vector3.up);
-    private Transform ScanForTargets()
+    private Transform CheckForTarget()
     {
         Vector3 rayDirection = transform.rotation * startAngle * Vector3.forward;
         RaycastHit hitInfo;
@@ -99,10 +98,10 @@ public class State_Basic_Seek : EnemyState
         {
             Ray ray = new Ray(transform.position, rayDirection);
 
-            if (Physics.Raycast(ray, out hitInfo, enemy.Eyesight, enemy.attackLayer))
+            if (Physics.Raycast(ray, out hitInfo, enemy.EyeSight, enemy.attackLayer))
                 return hitInfo.transform;
 
-            Debug.DrawRay(ray.origin, ray.direction * enemy.Eyesight, Color.red);
+            Debug.DrawRay(ray.origin, ray.direction * enemy.EyeSight, Color.red);
 
             rayDirection = stepAngle * rayDirection;
         }

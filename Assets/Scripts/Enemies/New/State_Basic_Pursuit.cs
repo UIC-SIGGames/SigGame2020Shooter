@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class State_Basic_Pursuit : EnemyState
 {
-    private float chargeRange = 4f;
-
     public override Type Tick()
     {
-        Debug.Log("Pursuing");
+        Vector3 nextPos =  Vector3.ClampMagnitude(enemy.Target.position - transform.position, 1);
 
-        enemy.Rb.MovePosition(Vector3.Lerp(transform.position, enemy.Target.position, enemy.MoveSpeed * Time.deltaTime));
-        transform.LookAt(enemy.Target);
+        enemy.SetMoveProperties(nextPos, nextPos);
 
-        if (Vector3.Distance(transform.position, enemy.Target.position) <= chargeRange)
+        float distance = Vector3.Distance(transform.position, enemy.Target.position);
+        if (distance <= enemy.ChargeRange)
             return typeof(State_Basic_Charge);
+        else if (distance >= enemy.LostRange) // add a timer
+            return typeof(State_Basic_Seek);
 
         return null;
     }
