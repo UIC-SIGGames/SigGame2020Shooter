@@ -8,13 +8,20 @@ public class Enemy : MonoBehaviour
     public LayerMask attackLayer;
     public float MoveSpeed = 10f,
                  TurnSpeed = 2f;
+
     [Header("Seek Behavior")]
-    public float TimeBtwnDecisions = 8f,
-                 EyeSight = 10f,
+    public float TimeBtwnDecisions = 8f;
+    public float EyeSight = 10f,
                  WallCheckDistance = 4.5f;
+
     [Header("Pursuit Behavior")]
     public float ChargeRange = 4f;
     public float LostRange = 100f;
+
+    [Header("Charge Behavior")]
+    public float ObserveTime = .25f;
+    public float ChargeTime = 3f,
+                 RecoverTime = .25f;
 
     public Transform Target { get; private set; }
     public Rigidbody Rb { get; private set; }

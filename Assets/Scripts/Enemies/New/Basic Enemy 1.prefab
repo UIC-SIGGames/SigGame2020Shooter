@@ -83,8 +83,11 @@ MonoBehaviour:
   TimeBtwnDecisions: 8
   EyeSight: 10
   WallCheckDistance: 4.5
-  ChargeRange: 4
-  LostRange: 100
+  ChargeRange: 8
+  LostRange: 50
+  ObserveTime: 0.25
+  ChargeTime: 1.5
+  RecoverTime: 0.25
 --- !u!1 &6081241266675580746
 GameObject:
   m_ObjectHideFlags: 0

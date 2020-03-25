@@ -8,6 +8,11 @@ public class State_Basic_Stunned : EnemyState
     private bool stunned;
     private float timer;
 
+    public override void Interrupt()
+    {
+        throw new NotImplementedException();
+    }
+
     public override Type Tick()
     {
         Debug.Log("Stunned");

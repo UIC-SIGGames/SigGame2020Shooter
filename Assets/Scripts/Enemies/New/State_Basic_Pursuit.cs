@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class State_Basic_Pursuit : EnemyState
 {
+    public override void Interrupt()
+    {
+        throw new NotImplementedException();
+    }
+
     public override Type Tick()
     {
         Vector3 nextPos =  Vector3.ClampMagnitude(enemy.Target.position - transform.position, 1);

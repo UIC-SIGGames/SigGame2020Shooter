@@ -85,7 +85,7 @@ public class State_Basic_Seek : EnemyState
         return Vector3.ClampMagnitude(newDirection, 1); ;
     }
 
-    private const int ANGLE_START = -45;
+    private const int ANGLE_START = -65;
     private const int ANGLE_STEP = 5;
     private Quaternion startAngle = Quaternion.AngleAxis(ANGLE_START, Vector3.up);
     private Quaternion stepAngle = Quaternion.AngleAxis(ANGLE_STEP, Vector3.up);
@@ -107,5 +107,10 @@ public class State_Basic_Seek : EnemyState
         }
 
         return null;
+    }
+
+    public override void Interrupt()
+    {
+        throw new NotImplementedException();
     }
 }

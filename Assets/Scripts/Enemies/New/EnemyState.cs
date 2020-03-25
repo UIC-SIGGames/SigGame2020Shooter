@@ -9,4 +9,5 @@ public abstract class EnemyState : MonoBehaviour
         enemy = GetComponent<Enemy>();
     }
     public abstract Type Tick();
+    public abstract void Interrupt(); // for taking damage
 }

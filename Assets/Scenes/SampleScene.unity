@@ -2054,16 +2054,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6782763089756923314, guid: d984d4ae3daa39d4d91f970c61427e85,
-        type: 3}
-      propertyPath: LostRange
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6782763089756923314, guid: d984d4ae3daa39d4d91f970c61427e85,
-        type: 3}
-      propertyPath: ChargeRange
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d984d4ae3daa39d4d91f970c61427e85, type: 3}
 --- !u!1 &1664665231
