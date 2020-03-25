@@ -1,8 +1,7 @@
 ﻿public enum EnemyStates
 {
-    Patrolling,
     Seeking,
-    MovingTowardsTarget,
+    Pursuing,
     Attacking,
     Stunned,
     Dead
