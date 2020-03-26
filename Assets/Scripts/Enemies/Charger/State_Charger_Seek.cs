@@ -1,9 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-public class State_Basic_Seek : EnemyState
+public class State_Charger_Seek : EnemyState
 {
     private Vector3? seekDirection;
+
+    private Enemy_Charger enemy;
+    private void Start()
+    {
+        enemy = GetComponent<Enemy_Charger>();
+    }
 
     public override Type Tick()
     {
@@ -13,7 +19,7 @@ public class State_Basic_Seek : EnemyState
         {
             enemy.SetTarget(newTarget);
             seekDirection = null;
-            return typeof(State_Basic_Pursuit);
+            return typeof(State_Charger_Pursuit);
         }
 
         ChangeDirectionTimer();
@@ -107,10 +113,5 @@ public class State_Basic_Seek : EnemyState
         }
 
         return null;
-    }
-
-    public override void Interrupt()
-    {
-        throw new NotImplementedException();
     }
 }

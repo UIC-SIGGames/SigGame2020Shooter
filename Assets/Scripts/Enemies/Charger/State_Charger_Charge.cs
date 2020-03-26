@@ -2,12 +2,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class State_Basic_Charge : EnemyState
+public class State_Charger_Charge : EnemyState
 {
     private float chargeTimer;
 
     private Vector3 targetDirection;
     private ChargeState state = ChargeState.Start;
+
+    private Enemy_Charger enemy;
+    private void Start()
+    {
+        enemy = GetComponent<Enemy_Charger>();
+    }
 
     // Observe delta in player movement to predict direction
     // Charge past that direction
@@ -21,7 +27,7 @@ public class State_Basic_Charge : EnemyState
         targetDirection = targetPos - transform.position;
         targetDirection = Vector3.ClampMagnitude(targetDirection, 1);
 
-        enemy.transform.LookAt(transform.position + targetDirection);
+        transform.LookAt(transform.position + targetDirection);
         chargeTimer = enemy.ChargeTime;
         state = ChargeState.Charge;
     }
@@ -52,7 +58,7 @@ public class State_Basic_Charge : EnemyState
 
             case ChargeState.Finished:
                 state = ChargeState.Start;
-                return typeof(State_Basic_Pursuit);
+                return typeof(State_Charger_Pursuit);
         }
 
         return null;
@@ -65,9 +71,12 @@ public class State_Basic_Charge : EnemyState
         chargeTimer -= Time.deltaTime;
     }
 
-    public override void Interrupt()
+    public override Type Interrupt(InterruptTypes interrupt)
     {
-        throw new NotImplementedException();
+        if (interrupt == InterruptTypes.Dead)
+            return typeof(State_Charger_Dead);
+
+        return null;
     }
 
     private enum ChargeState

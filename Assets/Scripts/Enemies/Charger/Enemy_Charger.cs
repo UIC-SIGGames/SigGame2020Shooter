@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : aEnemy
+public class Enemy_Charger : aEnemy
 {
     #region Customizables
     [Header("Seek Behavior")]
@@ -26,14 +26,15 @@ public class Enemy : aEnemy
     {
         var states = new Dictionary<Type, EnemyState>()
         {
-            {  typeof(State_Basic_Seek), gameObject.AddComponent<State_Basic_Seek>() },
-            {  typeof(State_Basic_Stunned), gameObject.AddComponent<State_Basic_Stunned>() },
-            {  typeof(State_Basic_Pursuit), gameObject.AddComponent<State_Basic_Pursuit>() },
-            {  typeof(State_Basic_Charge), gameObject.AddComponent<State_Basic_Charge>() },
+            {  typeof(State_Charger_Seek), gameObject.AddComponent<State_Charger_Seek>() },
+            {  typeof(State_Charger_Stunned), gameObject.AddComponent<State_Charger_Stunned>() },
+            {  typeof(State_Charger_Pursuit), gameObject.AddComponent<State_Charger_Pursuit>() },
+            {  typeof(State_Charger_Charge), gameObject.AddComponent<State_Charger_Charge>() },
+            {  typeof(State_Charger_Dead), gameObject.AddComponent<State_Charger_Dead>() }
         };
 
         stateMachine = gameObject.AddComponent<StateMachine>();
-        stateMachine.SetStates(states);
+        stateMachine.SetAvailableStates(states);
     }
     #endregion
 }

@@ -8,7 +8,6 @@ public class Health_Enemy : MonoBehaviour, iHealth
     private float currentHealth;
     private HealthBar healthBar;
     public event Action OnTakeDamage = delegate { };
-    public event Action<EnemyStates> OnChangeState = delegate { };
 
     private void Start()
     {
@@ -32,11 +31,6 @@ public class Health_Enemy : MonoBehaviour, iHealth
                 transform);
 
         OnTakeDamage();
-
-        if (currentHealth <= 0)
-            OnChangeState(EnemyStates.Dead);
-        else
-            OnChangeState(EnemyStates.Stunned);
     }
 
     public float PercentLeft()
