@@ -35,9 +35,9 @@ public class MOD_TakesDamage : MonoBehaviour, iModifier
     {
         if (enabled)
         {
-            var enemy = collision.gameObject.GetComponent<iEnemy>();
+            var enemy = collision.gameObject.GetComponent<aEnemy>();
 
-            if (enemy != null && !enemy.IsDead() && takingHits)
+            if (enemy != null && !enemy.IsDead && takingHits)
             {
                 StartCoroutine(TakeHit(collision.contacts[0].normal));
             }

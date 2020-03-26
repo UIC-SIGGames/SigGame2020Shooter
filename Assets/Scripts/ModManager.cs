@@ -32,5 +32,13 @@ public class ModManager : MonoBehaviour
             shotDrain.enabled = !shotDrain.enabled;
         if (Input.GetKeyDown(KeyCode.Alpha4))
             timeDrain.enabled = !timeDrain.enabled;
+
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            damage.enabled = false;
+            moveDrain.enabled = false;
+            shotDrain.enabled = false;
+            timeDrain.enabled = false;
+        }
     }
 }
