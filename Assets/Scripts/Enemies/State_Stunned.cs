@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class State_Stunned : EnemyState
 {
-    private float stunTime = 0.5f;
     private float targetScanRadius = 10f;
 
     private bool stunned = false;
@@ -28,7 +27,7 @@ public class State_Stunned : EnemyState
     public override Type Interrupt(InterruptTypes interrupt)
     {
         if (interrupt == InterruptTypes.Hit)
-            timer += stunTime;
+            timer += enemy.StunTime;
         else
             return typeof(State_Dead);
 
@@ -40,7 +39,7 @@ public class State_Stunned : EnemyState
         if (!stunned)
         {
             stunned = true;
-            timer = UnityEngine.Random.Range(.75f, 1.25f) * stunTime;
+            timer = UnityEngine.Random.Range(.75f, 1.25f) * enemy.StunTime;
         }
         else if (timer <= 0)
         {
