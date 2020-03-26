@@ -2,12 +2,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class State_Charger_Dead : EnemyState
+public class State_Dead : EnemyState
 {
-    private  Enemy_Charger enemy;
+    private aEnemy enemy;
     private void Start()
     {
-        enemy = GetComponent<Enemy_Charger>();
+        enemy = GetComponent<aEnemy>();
     }
 
     public override Type Interrupt(InterruptTypes interrupt)
@@ -29,7 +29,7 @@ public class State_Charger_Dead : EnemyState
     {
         enemy.SetDead();
         SpawnBattery(UnityEngine.Random.Range(0, enemy.MaxNumBatteriesDropped));
-        ScoreManager.Instance?.AddPoints(ScoreType.BasicEnemy); // change probably
+        ScoreManager.Instance?.AddPoints(enemy.ScoreType);
         yield return new WaitForSeconds(GameManager.DespawnTime);
         Destroy(gameObject);
     }

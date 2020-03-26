@@ -74,7 +74,7 @@ public class State_Charger_Charge : EnemyState
     public override Type Interrupt(InterruptTypes interrupt)
     {
         if (interrupt == InterruptTypes.Dead)
-            return typeof(State_Charger_Dead);
+            return typeof(State_Dead);
 
         return null;
     }

@@ -27,13 +27,14 @@ public class Enemy_Charger : aEnemy
         var states = new Dictionary<Type, EnemyState>()
         {
             {  typeof(State_Charger_Seek), gameObject.AddComponent<State_Charger_Seek>() },
-            {  typeof(State_Charger_Stunned), gameObject.AddComponent<State_Charger_Stunned>() },
+            {  typeof(State_Stunned), gameObject.AddComponent<State_Stunned>() },
             {  typeof(State_Charger_Pursuit), gameObject.AddComponent<State_Charger_Pursuit>() },
             {  typeof(State_Charger_Charge), gameObject.AddComponent<State_Charger_Charge>() },
-            {  typeof(State_Charger_Dead), gameObject.AddComponent<State_Charger_Dead>() }
+            {  typeof(State_Dead), gameObject.AddComponent<State_Dead>() }
         };
 
         stateMachine = gameObject.AddComponent<StateMachine>();
+        GetComponent<State_Stunned>().SetTypes(typeof(State_Charger_Pursuit), typeof(State_Charger_Seek));
         stateMachine.SetAvailableStates(states);
     }
     #endregion

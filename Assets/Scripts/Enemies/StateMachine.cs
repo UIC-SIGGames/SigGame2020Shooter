@@ -6,7 +6,7 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public EnemyState ActiveState { get; private set; }
-    public Dictionary<Type, EnemyState> availableStates;
+    public Dictionary<Type, EnemyState> availableStates { get; private set; }
 
     private void Update()
     {

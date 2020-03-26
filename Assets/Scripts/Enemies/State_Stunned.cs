@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class State_Charger_Stunned : EnemyState
+public class State_Stunned : EnemyState
 {
     private float stunTime = 0.5f;
     private float targetScanRadius = 10f;
@@ -10,10 +10,19 @@ public class State_Charger_Stunned : EnemyState
     private bool stunned = false;
     private float timer;
 
-    private Enemy_Charger enemy;
+    private aEnemy enemy;
+
+    private Type pursuit, seek;
+
     private void Start()
     {
-        enemy = GetComponent<Enemy_Charger>();
+        enemy = GetComponent<aEnemy>();
+    }
+
+    public void SetTypes(Type pursuit, Type seek)
+    {
+        this.pursuit = pursuit;
+        this.seek = seek;
     }
 
     public override Type Interrupt(InterruptTypes interrupt)
@@ -21,7 +30,7 @@ public class State_Charger_Stunned : EnemyState
         if (interrupt == InterruptTypes.Hit)
             timer += stunTime;
         else
-            return typeof(State_Charger_Dead);
+            return typeof(State_Dead);
 
         return null;
     }
@@ -45,10 +54,10 @@ public class State_Charger_Stunned : EnemyState
 
                 enemy.SetTarget(target);
 
-                return typeof(State_Charger_Pursuit);
+                return pursuit;
             }
 
-            return typeof(State_Charger_Seek);
+            return seek;
         }
 
         timer -= Time.deltaTime;

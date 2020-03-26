@@ -9,6 +9,7 @@ public abstract class aEnemy : MonoBehaviour
                  TurnSpeed = 2f,
                  StunTime = .4f;
     public int   MaxNumBatteriesDropped = 3;
+    public ScoreType ScoreType = ScoreType.BasicEnemy;
     #endregion
 
     public Transform Target { get; private set; }

@@ -7,8 +7,8 @@ public abstract class EnemyState : MonoBehaviour
     public virtual Type Interrupt(InterruptTypes interrupt)
     {
         if (interrupt == InterruptTypes.Hit)
-            return typeof(State_Charger_Stunned);
+            return typeof(State_Stunned);
         else
-            return typeof(State_Charger_Dead);
+            return typeof(State_Dead);
     }
 }
