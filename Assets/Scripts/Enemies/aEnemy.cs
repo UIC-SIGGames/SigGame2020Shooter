@@ -7,9 +7,10 @@ public abstract class aEnemy : MonoBehaviour
     public LayerMask attackLayer;
     public float MoveSpeed = 10f,
                  TurnSpeed = 2f,
-                 StunTime = .4f;
+                 StunTime = .4f,
+                 PostStunScanRadius = 30f;
     public int   MaxNumBatteriesDropped = 3;
-    public ScoreType ScoreType = ScoreType.BasicEnemy;
+    public ScoreType ScoreType = ScoreType.EnemyCharger;
     #endregion
 
     public Transform Target { get; private set; }

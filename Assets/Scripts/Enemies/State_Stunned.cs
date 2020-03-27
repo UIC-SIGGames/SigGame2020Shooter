@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class State_Stunned : EnemyState
 {
-    private float targetScanRadius = 10f;
-
     private bool stunned = false;
     private float timer;
 
-    private aEnemy enemy;
+    private aEnemy enemy => GetComponent<aEnemy>();
 
     private Type pursuit, seek;
-
-    private void Start()
-    {
-        enemy = GetComponent<aEnemy>();
-    }
 
     public void SetTypes(Type pursuit, Type seek)
     {
@@ -44,7 +37,7 @@ public class State_Stunned : EnemyState
         else if (timer <= 0)
         {
             stunned = false;
-            var potentialTargets = Physics.OverlapSphere(transform.position, targetScanRadius, enemy.attackLayer); // in case of MP -> attack nearest player
+            var potentialTargets = Physics.OverlapSphere(transform.position, enemy.PostStunScanRadius, enemy.attackLayer); // in case of MP -> attack nearest player
             if (potentialTargets.Length > 0)
             {
                 Transform target = potentialTargets

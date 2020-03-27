@@ -80,14 +80,15 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 512
-  MoveSpeed: 8
-  TurnSpeed: 2
-  StunTime: 0.4
-  MaxNumBatteriesDropped: 3
+  MoveSpeed: 7
+  TurnSpeed: 3
+  StunTime: 0.25
+  MaxNumBatteriesDropped: 6
+  ScoreType: 25
   TimeBtwnDecisions: 8
-  EyeSight: 10
-  WallCheckDistance: 4.5
-  ChargeRange: 4
+  EyeSight: 14
+  WallCheckDistance: 5
+  ChargeRange: 6
   LostRange: 50
   ObserveTime: 0.25
   ChargeTime: 1.25

@@ -5,11 +5,7 @@ public class State_Charger_Pursuit : EnemyState
 {
     private float distanceToTarget;
 
-    private Enemy_Charger enemy;
-    private void Start()
-    {
-        enemy = GetComponent<Enemy_Charger>();
-    }
+    private Enemy_Charger enemy => GetComponent<Enemy_Charger>();
 
     public override Type Tick()
     {

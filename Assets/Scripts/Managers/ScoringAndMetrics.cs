@@ -7,6 +7,8 @@ public class TrackedScoreMetrics
         Score = 0;
         NumShots = 0;
         NumHits = 0;
+        NumBatsSpawned = 0;
+        NumBatsSpawned = 0;
         TimeElapsed = TimeSpan.Zero;
         startTime = DateTime.Now;
     }
@@ -14,6 +16,8 @@ public class TrackedScoreMetrics
     public int Score { get; private set; }
     public int NumShots { get; private set; }
     public int NumHits { get; private set; }
+    public int NumBatsSpawned { get; private set; }
+    public int NumBatsRetrieved { get; private set; }
     public TimeSpan TimeElapsed { get; private set; }
 
     private DateTime startTime; // could also track last hit, last kill for multipliers
@@ -35,6 +39,14 @@ public class TrackedScoreMetrics
         }
     }
 
+    internal void UpdateBatteryStats(bool pickup)
+    {
+        if (pickup)
+            ++NumBatsRetrieved;
+        else
+            ++NumBatsSpawned;
+    }
+
     internal void CeaseTracking()
     {
         TimeElapsed = DateTime.Now - startTime;
@@ -51,7 +63,7 @@ public enum ScoreType // type = index (being used for point value as well right 
     Hit = 5,
     Destructible = 10,
     BuildingExplosion = 20,
-    BasicEnemy = 25,
+    EnemyCharger = 25,
     HarderEnemy = 45,
     WowEnemy = 90
 }

@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class State_Dead : EnemyState
 {
-    private aEnemy enemy;
-    private void Start()
-    {
-        enemy = GetComponent<aEnemy>();
-    }
-
-    public override Type Interrupt(InterruptTypes interrupt)
-    {
-        return null;
-    }
+    private aEnemy enemy => GetComponent<aEnemy>();
+    public override Type Interrupt(InterruptTypes interrupt) => null;
 
     public override Type Tick()
     {
         if(!enemy.IsDead)
-        {
             StartCoroutine(Die());
-        }
 
         return null;
     }
@@ -38,8 +28,8 @@ public class State_Dead : EnemyState
     {
         bool? playerLowHealth = BatteryManager.Instance?.LowEnergy();
 
-        if (playerLowHealth.Value && numBatteries < 2)
-            numBatteries = 2;
+        if (playerLowHealth.Value && numBatteries < enemy.MaxNumBatteriesDropped / 2)
+            numBatteries = enemy.MaxNumBatteriesDropped / 2;
 
         while (numBatteries > 0)
             Instantiate(Resources.Load<GameObject>("Battery"), transform.position + Vector3.up * numBatteries--, Quaternion.identity);

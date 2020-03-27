@@ -9,11 +9,7 @@ public class State_Charger_Charge : EnemyState
     private Vector3 targetDirection;
     private ChargeState state = ChargeState.Start;
 
-    private Enemy_Charger enemy;
-    private void Start()
-    {
-        enemy = GetComponent<Enemy_Charger>();
-    }
+    private Enemy_Charger enemy => GetComponent<Enemy_Charger>();
 
     // Observe delta in player movement to predict direction
     // Charge past that direction
