@@ -11,6 +11,7 @@ public class TrackedScoreMetrics
         NumBatsSpawned = 0;
         NumEnemiesSpawned = 0;
         NumEnemiesKilled = 0;
+        NumGrenadesThrown = 0;
         TimeElapsed = TimeSpan.Zero;
         startTime = DateTime.Now;
     }
@@ -22,6 +23,7 @@ public class TrackedScoreMetrics
     public int NumBatsRetrieved { get; private set; }
     public int NumEnemiesSpawned { get; private set; }
     public int NumEnemiesKilled { get; private set; }
+    public int NumGrenadesThrown { get; private set; }
     public TimeSpan TimeElapsed { get; private set; }
 
     private DateTime startTime; // could also track last hit, last kill for multipliers
@@ -59,6 +61,9 @@ public class TrackedScoreMetrics
             case MetricType.EnemyKilled:
                 ++NumEnemiesKilled;
                 break;
+            case MetricType.GrenadeThrown:
+                ++NumGrenadesThrown;
+                break;
             default:
                 break;
         }
@@ -90,5 +95,6 @@ public enum MetricType
     BatterySpawn,
     BatteryRetrieve,
     EnemySpawned,
-    EnemyKilled
+    EnemyKilled,
+    GrenadeThrown
 }

@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
     public static event Action<int> OnUpdatedScore = delegate { }; // Updates UIManager
 
+    private bool usedMods = false;
     TrackedScoreMetrics metrics = new TrackedScoreMetrics();
 
     private void Start()
@@ -21,13 +22,25 @@ public class ScoreManager : MonoBehaviour
         GameManager.OnEnd -= WrapUp;
     }
 
-    public void AddPoints(ScoreType scoreType)
+    public void InvalidateStats()
     {
-        metrics.UpdateStats(scoreType);
-        OnUpdatedScore(metrics.Score);
+        usedMods = true;
     }
 
-    public void TrackPeripheralMetrics(MetricType metric) => metrics.UpdatePeripheralStats(metric);
+    public void AddPoints(ScoreType scoreType)
+    {
+        if (!usedMods)
+        {
+            metrics.UpdateStats(scoreType);
+            OnUpdatedScore(metrics.Score);
+        }
+    }
+
+    public void TrackPeripheralMetrics(MetricType metric)
+    {
+        if (!usedMods) 
+            metrics.UpdatePeripheralStats(metric);
+    }
 
     private void WrapUp()
     {
@@ -42,6 +55,9 @@ public class ScoreManager : MonoBehaviour
     private const string MetricsURL = "https://builds.topher.games/ACMS2020_ShootGame/RogueShootGameAddStats.php?";
     private IEnumerator SendMetrics() // Sends metrics to a MYSQL database
     {
+        if (usedMods)
+            yield break;
+
         UnityWebRequest UpdateOnlineMetrics = new UnityWebRequest
             (MetricsURL
             + "Shots=" + metrics.NumShots
@@ -51,7 +67,8 @@ public class ScoreManager : MonoBehaviour
             + "&BatRetrieved=" + metrics.NumBatsRetrieved
             + "&EnemiesSpawned=" + metrics.NumEnemiesSpawned
             + "&EnemiesKilled=" + metrics.NumEnemiesKilled
-            + "&Score=" + metrics.Score);
+            + "&Score=" + metrics.Score
+            + "&GrenadesThrown=" + metrics.NumGrenadesThrown);
 
         if (Application.platform != RuntimePlatform.WebGLPlayer)
             UpdateOnlineMetrics.SetRequestHeader("User-Agent", "Unity 2019");

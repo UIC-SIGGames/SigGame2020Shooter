@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class DeathExplosion : MonoBehaviour
 {
     [SerializeField]
     private float maxScale = 20f,
@@ -14,6 +14,7 @@ public class Explosion : MonoBehaviour
     {
         targetScale = transform.localScale * maxScale;
         material = GetComponent<Renderer>().material;
+        Destroy(gameObject, 3);
     }
 
     private void Update()

@@ -25,20 +25,33 @@ public class ModManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             damage.enabled = !damage.enabled;
+            ScoreManager.Instance.InvalidateStats();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             moveDrain.enabled = !moveDrain.enabled;
+            ScoreManager.Instance.InvalidateStats();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
             shotDrain.enabled = !shotDrain.enabled;
+            ScoreManager.Instance.InvalidateStats();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
             timeDrain.enabled = !timeDrain.enabled;
+            ScoreManager.Instance.InvalidateStats();
+        }
 
-        if(Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             damage.enabled = false;
             moveDrain.enabled = false;
             shotDrain.enabled = false;
             timeDrain.enabled = false;
+            ScoreManager.Instance.InvalidateStats();
         }
     }
 }
