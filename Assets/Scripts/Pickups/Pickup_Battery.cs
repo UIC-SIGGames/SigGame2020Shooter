@@ -17,7 +17,7 @@ public class Pickup_Battery : MonoBehaviour, iPickup
         rb = GetComponent<Rigidbody>();
         Vector3 force = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(1f, 2f), UnityEngine.Random.Range(-1f, 1f));
         rb.AddForce(force * UnityEngine.Random.Range(1, 5), ForceMode.Impulse);
-        ScoreManager.Instance?.TrackBatteries(false);
+        ScoreManager.Instance?.TrackPeripheralMetrics(MetricType.BatterySpawn);
     }
 
     private void Update()
@@ -35,11 +35,11 @@ public class Pickup_Battery : MonoBehaviour, iPickup
         {
             BatteryManager.Instance?.AddEnergy(GameManager.BatPickupBonus);
             Instantiate(Resources.Load<GameObject>("Pickup Particles"), transform.position, Quaternion.identity); // recycle
-            ScoreManager.Instance?.TrackBatteries(true);
 
             transform.position = new Vector3(0, -100, 0); // bad bad bad ALL OF THIS IS BAD
             OnPickup();
             magnetized = false; // use a global sound manager PlayOneShot instead of doing these 4 lines??
+            ScoreManager.Instance?.TrackPeripheralMetrics(MetricType.BatteryRetrieve);
             Destroy(gameObject, 0.2f); // most DEFINITELY recycle these instead
         }
     }

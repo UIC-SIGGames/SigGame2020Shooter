@@ -28,6 +28,8 @@ public abstract class aEnemy : MonoBehaviour
         health.OnTakeDamage += HandleDamage;
 
         InitializeStates();
+
+        ScoreManager.Instance?.TrackPeripheralMetrics(MetricType.EnemySpawned);
     }
 
     private void FixedUpdate()

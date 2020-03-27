@@ -18,6 +18,7 @@ public class State_Dead : EnemyState
     private IEnumerator Die()
     {
         enemy.SetDead();
+        ScoreManager.Instance?.TrackPeripheralMetrics(MetricType.EnemyKilled);
         SpawnBattery(UnityEngine.Random.Range(0, enemy.MaxNumBatteriesDropped));
         ScoreManager.Instance?.AddPoints(enemy.ScoreType);
         yield return new WaitForSeconds(GameManager.DespawnTime);

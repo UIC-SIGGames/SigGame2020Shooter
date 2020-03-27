@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
         OnUpdatedScore(metrics.Score);
     }
 
-    public void TrackBatteries(bool pickup) => metrics.UpdateBatteryStats(pickup);
+    public void TrackPeripheralMetrics(MetricType metric) => metrics.UpdatePeripheralStats(metric);
 
     private void WrapUp()
     {
@@ -43,16 +43,18 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator SendMetrics() // Sends metrics to a MYSQL database
     {
         UnityWebRequest UpdateOnlineMetrics = new UnityWebRequest
-            (MetricsURL 
-            + "Shots=" + metrics.NumShots 
-            + "&Hits=" + metrics.NumHits 
+            (MetricsURL
+            + "Shots=" + metrics.NumShots
+            + "&Hits=" + metrics.NumHits
             + "&Playtime=" + (int)metrics.TimeElapsed.TotalSeconds
             + "&BatSpawned=" + metrics.NumBatsSpawned
-            + "&BatRetrieved=" + metrics.NumBatsRetrieved);
+            + "&BatRetrieved=" + metrics.NumBatsRetrieved
+            + "&EnemiesSpawned=" + metrics.NumEnemiesSpawned
+            + "&EnemiesKilled=" + metrics.NumEnemiesKilled
+            + "&Score=" + metrics.Score);
 
-        UpdateOnlineMetrics.SetRequestHeader("Accept", "/");
-        UpdateOnlineMetrics.SetRequestHeader("Accept-Encoding", "gzip, deflate");
-        UpdateOnlineMetrics.SetRequestHeader("User-Agent", "Unity???");
+        if (Application.platform != RuntimePlatform.WebGLPlayer)
+            UpdateOnlineMetrics.SetRequestHeader("User-Agent", "Unity 2019");
 
         UpdateOnlineMetrics.SendWebRequest();
 
