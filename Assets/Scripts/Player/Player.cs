@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     private IEnumerator ThrowGrenade()
     {
         canThrowGrenade = false;
-        Instantiate(explosiveWeapon, transform.position + transform.right * 2 + Vector3.up * 3, transform.rotation).GetComponent<aExplosive>().SetThrowForce(grenadeThrowForce);
+        Instantiate(explosiveWeapon, transform.position + transform.right * 2 + Vector3.up * 3, transform.rotation)
+            .GetComponent<aExplosive>().SetThrowForce(grenadeThrowForce);
         yield return new WaitForSeconds(grenadeWaitTime);
         canThrowGrenade = true;
     }

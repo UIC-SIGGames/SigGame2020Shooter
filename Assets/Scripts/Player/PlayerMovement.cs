@@ -4,6 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float accelForce = 5f;
+    [SerializeField]
+    private float maxSpeed = 15f;
 
     private Rigidbody rb;
     private Camera mainCam;
@@ -37,9 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        moveInput = Vector3.ClampMagnitude(moveInput, 1); // Prevents fast diagonal acceleration
-
-        if (moveInput.magnitude > 0)
-            rb.AddForce(moveInput * accelForce, ForceMode.Acceleration);
+        rb.AddForce(moveInput.normalized * accelForce, ForceMode.Acceleration);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 }

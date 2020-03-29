@@ -520,7 +520,12 @@ MonoBehaviour:
 
     -
 
-    0: No drain'
+    0: No drain
+
+    --
+
+    7: Velocity
+    Sensitive Bullets'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -589,12 +594,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -488.2742, w: 0}
   m_textInfo:
     textComponent: {fileID: 431002022}
-    characterCount: 100
+    characterCount: 133
     spriteCount: 0
-    spaceCount: 21
-    wordCount: 22
+    spaceCount: 26
+    wordCount: 27
     linkCount: 0
-    lineCount: 7
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -725,6 +730,28 @@ Transform:
   m_Father: {fileID: 1117485805}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &511768763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974802597429183869, guid: 5b38649b17cb9034ab7f76919d769a35,
+    type: 3}
+  m_PrefabInstance: {fileID: 2974802598759635338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &511768774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511768763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69889caab20fb6c4693101a8c59a46c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeModifier: 304
+  dodgeForce: 45
+  dodgeRecovery: 0.5
+  batteryPenalty: 2.5
 --- !u!1 &558570322
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnTime: 4
-  batteryPickupEnergyBonus: 5
+  batteryPickupEnergyBonus: 7
   blowUpShakeAmount: 10
 --- !u!114 &824839367
 MonoBehaviour:
@@ -2321,11 +2348,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2974802597429183858, guid: 5b38649b17cb9034ab7f76919d769a35,
-        type: 3}
-      propertyPath: grenadeThrowForce
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2974802597429183869, guid: 5b38649b17cb9034ab7f76919d769a35,
         type: 3}

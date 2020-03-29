@@ -12,6 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float batteryPickupEnergyBonus = 10f;
     [SerializeField] private float blowUpShakeAmount = 10f;
 
+    public static bool VelocitySensitiveBullets = true;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            VelocitySensitiveBullets = !VelocitySensitiveBullets;
+    }
+
     private void Start()
     {
         DespawnTime = despawnTime;

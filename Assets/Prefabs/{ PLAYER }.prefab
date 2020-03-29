@@ -54,7 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da31ef1db73111a4780fc7d2cf517478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelForce: 15
+  accelForce: 17.5
+  maxSpeed: 20
 --- !u!114 &2974802597429183858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a492e350bd43340b486ff115060d398b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadeThrowForce: 10
+  grenadeThrowForce: 5
   grenadeWaitTime: 5
   explosiveWeapon: {fileID: 6991862917242048617, guid: 50daa05aa1373b648acdc71c6792a359,
     type: 3}
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88c4e9f994d2084490d57514f9cbfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depletionRate: 2
+  depletionRate: 1.75
 --- !u!1 &7515097726277144794
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,21 +317,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5061322413236862941, guid: a7631a977652aa04db664ac51e466ef5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5061322413236862941, guid: a7631a977652aa04db664ac51e466ef5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5061322413236862941, guid: a7631a977652aa04db664ac51e466ef5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5061322413236862942, guid: a7631a977652aa04db664ac51e466ef5,
         type: 3}

@@ -80,9 +80,10 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 512
-  MoveSpeed: 7
+  MoveSpeed: 8.5
   TurnSpeed: 3
   StunTime: 0.25
+  PostStunScanRadius: 30
   MaxNumBatteriesDropped: 6
   ScoreType: 25
   TimeBtwnDecisions: 8

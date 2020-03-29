@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de5f2ad55bd5cd4197ca52881d66f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interpSpeed: 0.3
+  interpSpeed: 1
   startColor: {r: 0, g: 1, b: 0, a: 1}
   endColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2781391957894474834

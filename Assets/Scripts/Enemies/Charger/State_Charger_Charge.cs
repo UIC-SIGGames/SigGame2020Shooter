@@ -15,13 +15,14 @@ public class State_Charger_Charge : EnemyState
     // Charge past that direction
     private IEnumerator Observe()
     {
-        Vector3 beginPos = enemy.Target.position;
+        Transform target = enemy.Target;
+
+        Vector3 beginPos = target.position;
         yield return new WaitForSeconds(enemy.ObserveTime);
-        Vector3 endPos = enemy.Target.position;
+        Vector3 endPos = target.position;
 
         Vector3 targetPos = endPos + (endPos - beginPos) * enemy.PredictionScale;
-        targetDirection = targetPos - transform.position;
-        targetDirection = Vector3.ClampMagnitude(targetDirection, 1);
+        targetDirection = (targetPos - transform.position).normalized;
 
         transform.LookAt(transform.position + targetDirection);
         chargeTimer = enemy.ChargeTime;

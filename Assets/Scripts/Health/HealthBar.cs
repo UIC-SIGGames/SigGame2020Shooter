@@ -6,7 +6,7 @@ using UnityEngine;
 // If we want to do Earthbound style health we could make a callback when fillAmount == 0.
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private float interpSpeed = .3f; // speed the bar moves... could change it to reflect severity?
+    [SerializeField] private float interpSpeed = 1f; // speed the bar moves... could change it to reflect severity?
     [SerializeField] private Color startColor  = Color.green,
                                    endColor    = Color.red;
 
